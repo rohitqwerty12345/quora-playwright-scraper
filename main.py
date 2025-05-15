@@ -17,7 +17,7 @@ def scrape():
         return jsonify({"error": "Missing 'url' query parameter"}), 400
 
     with sync_playwright() as p:
-        browser = p.chromium.launch()
+        browser = p.chromium.launch(args=["--no-sandbox"])
         page = browser.new_page()
         page.goto(url)
         page.wait_for_timeout(5000)
